@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.Extensions.Options;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
 
 namespace Utilities
 {
