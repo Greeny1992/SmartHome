@@ -103,5 +103,47 @@ namespace UnitTests
 
             Assert.IsNull(await MongoUoW.DataPoints.FindByIdAsync(pt.ID));
         }
+
+        [Test]
+        public async Task FindByDBName()
+        {
+            DataPoint pt = new DataPoint();
+            pt.DataType = DataType.Float;
+            pt.Description = "Erster Test";
+            pt.Name = "Erster Test";
+            pt.DatabaseName = "DBNameTest";
+
+            await MongoUoW.DataPoints.InsertOrUpdateOneAsync(pt);
+            Assert.NotNull(pt);
+            Assert.NotNull(pt.ID);
+
+            var res = await MongoUoW.DataPoints.FindByDataBaseName("DBNameTest");
+            Assert.NotNull(res);
+            await MongoUoW.DataPoints.DeleteOneAsync(filter => filter.ID == res.ID);
+        }
+
+        [Test]
+        public async Task TestAddVisual()
+        {
+            DataPoint pt = new DataPoint();
+            pt.DataType = DataType.Float;
+            pt.Description = "Erster Test";
+            pt.Name = "Erster Test";
+            pt.DatabaseName = "DBNameTest";
+
+            await MongoUoW.DataPoints.InsertOrUpdateOneAsync(pt);
+            Assert.NotNull(pt);
+            Assert.NotNull(pt.ID);
+
+            DataPointVisual testVisual = new DataPointVisual();
+            testVisual.Name = "Test Name Visual";
+            testVisual.Description = "Test Description";
+            
+            //await MongoUoW.DataPoints.AddVisualToDataPoint(testVisual, pt);
+
+            var res = await MongoUoW.DataPoints.FindByDataBaseName("DBNameTest");
+            //Assert.AreEqual(res.Internal_Visual, testVisual);
+            await MongoUoW.DataPoints.DeleteOneAsync(filter => filter.ID == res.ID);
+        }
     }
 }

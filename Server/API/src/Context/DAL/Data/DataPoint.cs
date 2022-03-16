@@ -21,7 +21,7 @@ namespace Context.DAL.Data
         public String Description { get; set; }
         public Dictionary<String, AlarmThreshold> AlarmThresholds { get; set; } = new();
 
-        public One<DataPointVisual> Internal_Visual { get; set; } = null;
+        public One<DataPointVisual> Internal_Visual { get; set; }
 
         [BsonIgnore]
         public DataPointVisual Visual

@@ -23,5 +23,18 @@ namespace Context.UnitOfWork
                 return new DataPointRepository(Context);
             }
         }
+
+        public IDataPointVisualizationRepository DataPointsVisualization
+        {
+            get
+            {
+                return new DataPointVisualizationRepository(Context);
+            }
+        }
+
+        public IUserRepository User
+        {
+            get { return new UserRepository(Context); }
+        }
     }
 }
