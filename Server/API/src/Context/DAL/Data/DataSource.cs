@@ -1,8 +1,11 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using Context.DAL.Data.Sources;
+using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Entities;
 
 namespace Context.DAL.Data
 {
+    [BsonDiscriminator(RootClass = true)]
+    [BsonKnownTypes(typeof(MQTTDatasource), typeof(ModbusDatasource))]
     public class DataSource : MongoDocument
     {
 

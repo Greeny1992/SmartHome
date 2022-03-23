@@ -1,4 +1,5 @@
 ﻿using Context.Repos;
+using Context.Repos.Concrete;
 using Context.Settings;
 using Microsoft.Extensions.Configuration;
 
@@ -35,6 +36,22 @@ namespace Context.UnitOfWork
         public IUserRepository User
         {
             get { return new UserRepository(Context); }
+        }
+
+        public IDataPointVisualizationRepository DataPointVisuals
+        {
+            get
+            {
+                return new DataPointVisualizationRepository(Context);
+            }
+        }
+
+        public IDatasourceRepository DataSources
+        {
+            get
+            {
+                return new DatasourceRepository(Context);
+            }
         }
     }
 }

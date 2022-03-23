@@ -1,4 +1,6 @@
-﻿namespace Utilities
+﻿using Microsoft.Extensions.Options;
+
+namespace Utilities
 {
     public sealed class HashingOptions
     {

@@ -9,7 +9,7 @@ namespace Context.Repos
 {
     public class MongoRepository<TEntity> : IMongoRepository<TEntity> where TEntity : MongoDocument
     {
-        ILogger log = Utilities.Logger.ContextLog<MongoDocument>();
+        public ILogger log = Utilities.Logger.ContextLog<MongoDocument>();
         private readonly IMongoCollection<TEntity> _collection;
 
         public MongoRepository(MongoDBContext Context)
@@ -55,7 +55,12 @@ namespace Context.Repos
             return Task.Run(() => _collection.Find(filterExpression).FirstOrDefaultAsync());
         }
 
-        public async Task<TEntity> InsertOrUpdateOneAsync(TEntity document)
+        public virtual TEntity FindOne(Expression<Func<TEntity, bool>> filterExpression)
+        {
+            return _collection.Find(filterExpression).FirstOrDefault();
+        }
+
+        public virtual async Task<TEntity> InsertOrUpdateOneAsync(TEntity document)
         {
             try
             {

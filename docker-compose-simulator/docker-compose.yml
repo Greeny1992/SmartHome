@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  datasimulation:
+    image: thomasschirgi/datasimulator
+    container_name: datasimulation
+    networks: 
+      - simulator-network
+    ports:
+     - "8080:80"
+     - "8083:81"
+     - "11883:1883"
+     - "11884:1884"
+     - "11885:1885"
+     - "1502:502"
+     - "1503:503"
+     - "1504:504"
+    volumes:
+     - "./SimulationSettings:/app/SimulationSettings"
+  datasimulation_gui:
+    image: thomasschirgi/datasimulatorgui
+    networks: 
+      - simulator-network
+    container_name: datasimulation_gui
+    ports:
+     - "8084:80"
+networks:
+  simulator-network:
+    driver: bridge
