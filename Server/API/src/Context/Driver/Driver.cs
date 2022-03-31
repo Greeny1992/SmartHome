@@ -1,15 +1,19 @@
 ﻿using Context.DAL.Data;
+using Serilog;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utilities;
 
 namespace Context.Driver
 {
     public abstract class Driver
     {
+        protected ILogger log = Logger.ContextLog<Driver>();
+
         protected ConcurrentDictionary<String, ConcurrentBag<Measurement>> NumericMeasurements = new ConcurrentDictionary<String, ConcurrentBag<Measurement>>();
         protected ConcurrentDictionary<String, ConcurrentBag<Measurement>> BinaryMeasurements = new ConcurrentDictionary<String, ConcurrentBag<Measurement>>();
         protected Dictionary<String, DataPoint> DataPoints = new Dictionary<String, DataPoint>();

@@ -2,6 +2,7 @@
 using Context.DAL.Data;
 using Microsoft.Extensions.Options;
 using NUnit.Framework;
+using System;
 using System.Threading.Tasks;
 using Utilities;
 
@@ -98,7 +99,7 @@ namespace UnitTests
             var res = MongoUoW.DataPoints.FilterBy(filter => filter.DataType == DataType.Float);
             foreach (var dp in res)
             {
-                Assert.AreEqual(dp.Name, "Wohnzimmer Temp");
+                Assert.AreEqual(dp.Name, "Erster Test");
             }
 
 
@@ -155,6 +156,10 @@ namespace UnitTests
             User user = new User();
             user.UserName = "TestUserName";
             user.Password = "PlainPassword";
+            user.Role = Role.Admin;
+            user.ValidTill = DateTime.MaxValue;
+            user.Firstname = "Schorsch";
+            user.Lastname = "P";
 
             User user2 = await MongoUoW.User.InsertOrUpdateOneAsync(user);
             Assert.NotNull(user2);
@@ -164,18 +169,19 @@ namespace UnitTests
         [Test]
         public async Task TestLogin()
         {
-            IOptions<HashingOptions> _hashingOptions = Options.Create(new HashingOptions());
-            PasswordHasher _passwordHasher = new PasswordHasher(_hashingOptions);
 
-            User u = new User();
-            u.UserName = "TestUser";
-            u.HashedPassword = _passwordHasher.Hash("123");
+            User u = await MongoUoW.User.Login("TestUserName", "PlainPassword");
 
-            await MongoUoW.User.InsertOrUpdateOneAsync(u);
+            Assert.IsNotNull(u);
+        }
 
-            User u2 = await MongoUoW.User.Login("TestUser", "123");
+        [Test]
+        public async Task TestLoginFail()
+        {
 
-            Assert.IsNotNull(u2);
+            User u = await MongoUoW.User.Login("TestUserName", "WrongPassword");
+
+            Assert.IsNull(u);
         }
     }
 }
