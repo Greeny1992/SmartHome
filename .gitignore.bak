@@ -350,7 +350,3 @@ MigrationBackup/
 .ionide/
 
 *.dll
-
-InfluxData/
-
-MongoData/
