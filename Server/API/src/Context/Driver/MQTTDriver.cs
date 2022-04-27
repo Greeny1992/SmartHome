@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Context.Driver
 {
-    public class MQTTDriver: Driver
+    public class MQTTDriver: Drivers
     {
         IManagedMqttClient Client;
         IMqttClientOptions Options;

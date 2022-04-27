@@ -14,6 +14,9 @@ namespace Context
         public InfluxDBUnitOfWork InfluxDB { get; private set; }
 
         public Authentication Authentication { get; private set; }
+
+        public DataAcquistion DataAcquistion { get; private set; }
+
         private MonitoringFacade()
         {
             MongoDB = new MongoDBUnitOfWork();
@@ -36,6 +39,11 @@ namespace Context
 
                 return _instance;
             }
+        }
+
+        public async Task Init()
+        {
+            await DataAcquistion.Start();
         }
     }
 }

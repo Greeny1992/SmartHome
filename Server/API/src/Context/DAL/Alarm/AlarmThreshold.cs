@@ -18,10 +18,10 @@ namespace Context.DAL.Alarm
 
     public enum AlarmCheckType
     {
-        Equal,
-        NotEqual,
-        BottomUp,
-        TopDown
+        Equal, // ==
+        NotEqual, // != 
+        BottomUp, // <
+        TopDown  // >
     }
 
     public enum AlarmType

@@ -11,7 +11,7 @@ namespace Context.Repos
         Task<TEntity> FindOneAsync(Expression<Func<TEntity, bool>> filterExpression);
 
 
-        Task<TEntity> FindByIdAsync(string id);
+        Task<TEntity> FindByIdAsync(String id);
 
         Task<TEntity> InsertOrUpdateOneAsync(TEntity document);
 

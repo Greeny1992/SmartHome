@@ -42,7 +42,7 @@ namespace Context.Repos
             return _collection.Find(filterExpression).ToEnumerable();
         }
 
-        public async Task<TEntity> FindByIdAsync(string id)
+        public async Task<TEntity> FindByIdAsync(String id)
         {
             var objectId = new ObjectId(id);
             FilterDefinition<TEntity> filterDefinition = Builders<TEntity>.Filter.Eq("_id", objectId);

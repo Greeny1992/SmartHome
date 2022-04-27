@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace Context.Driver
 {
-    public class ModbusDriver : Driver
+    public class ModbusDriver : Drivers
     {
         TcpClient Client;
         ModbusIpMaster Master;
