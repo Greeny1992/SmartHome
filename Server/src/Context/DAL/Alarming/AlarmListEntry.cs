@@ -1,6 +1,8 @@
 ﻿using Context.DAL.Data;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +15,18 @@ namespace Context.DAL.Alarming
     {
         public DateTime ActiveDate { get; set; }
         public DateTime DeactiveDate { get; set; }
+
         [BsonRepresentation(BsonType.String)]
+        [JsonConverter(typeof(StringEnumConverter))]
         public AlarmType AlarmType { get; set; }
         public String AlarmText { get; set; }
+
         [BsonRepresentation(BsonType.String)]
+        [JsonConverter(typeof(StringEnumConverter))]
         public AlarmStatus AlarmStatus { get; set; }
+
         [BsonRepresentation(BsonType.String)]
+        [JsonConverter(typeof(StringEnumConverter))]
         public AcknowledgeStatus AcknowledgeStatus { get; set; }
         public User AcknowledgeUser { get; set; }
         public String AcknowledgeComment { get; set; }

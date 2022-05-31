@@ -4,6 +4,8 @@ using Context.DAL.Visuals;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Entities;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +28,7 @@ namespace Context.DAL.Data
         public String Name { get; set; }
 
         [BsonRepresentation(BsonType.String)]
+        [JsonConverter(typeof(StringEnumConverter))]
         public DataType DataType { get; set; }
         public int Offset { get; set; }
         public String Description { get; set; }

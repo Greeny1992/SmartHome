@@ -12,7 +12,7 @@ namespace UnitTest
     public class UserUnitTest : BaseUnitTests
     {
         [Test]
-        public async Task CreateUser()
+        public async Task CreateAdmin()
         {
             User user = new User();
             user.UserName = "georg@georg.at";
@@ -20,6 +20,22 @@ namespace UnitTest
             user.ValidTill = DateTime.MaxValue;
             user.Password = "123456";
             user.Firstname = "Georg";
+            user.Lastname = "Prassl";
+
+            User returnval = await MongoUoW.Users.InsertOneAsync(user);
+
+            Assert.NotNull(returnval);
+        }
+
+        [Test]
+        public async Task CreateUser()
+        {
+            User user = new User();
+            user.UserName = "michi@georg.at";
+            user.Role = Role.Admin;
+            user.ValidTill = DateTime.MaxValue;
+            user.Password = "123456";
+            user.Firstname = "Michi";
             user.Lastname = "Prassl";
 
             User returnval = await MongoUoW.Users.InsertOneAsync(user);
