@@ -5,6 +5,8 @@ class ServerConfig {
     private _AlarmListControllerURI = `${this._host}/AlarmList/`;
     private _DataSourcesControllerURI = `${this._host}/DataSource/`;
     private _DataPointControllerURI = `${this._host}/DataPoint/`;
+    private _VisualsControllerURI = `${this._host}/Visuals/`;
+    private _UserURI = `${this._host}/User/`;
 
     public get host(): string {
         return this._host
@@ -29,9 +31,13 @@ class ServerConfig {
     public get getDataPointControllerURI(): string {
         return this._DataPointControllerURI
     };
+    public get getDataPointVisualsURI(): string {
+        return this._VisualsControllerURI
+    };
 
-
-
+    public get getUserURI(): string {
+        return this._UserURI
+    };
 }
 
 export default new ServerConfig()

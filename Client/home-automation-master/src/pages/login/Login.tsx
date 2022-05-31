@@ -16,7 +16,7 @@ import { loggedIn } from '../../services/actions/security';
 import { useDispatch } from 'react-redux';
 import store, {AppDispatch} from "../../services/store";
 import { BuildForm, FormDescription } from '../../util/form-builder';
-import { login } from '../../services/security';
+import { login } from '../../services/rest/security';
 import { executeDelayed } from '../../util/async-helpers';
 
 type formData = Readonly<LoginData>;

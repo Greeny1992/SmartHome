@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { Provider } from "react-redux";
-import {loadUserData} from "./services/security";
+import {loadUserData} from "./services/rest/security";
 import {loggedIn} from "./services/actions/security";
 import {combineReducers} from "redux";
 import rootReducer from "./services/reducers";

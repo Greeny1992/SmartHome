@@ -27,6 +27,12 @@ import Login from './pages/login/Login';
 import ValueList from './pages/list/ValueList';
 import { SecureRoute } from './components/SecureRoute';
 import { ShowValue } from './pages/showValue/ShowValue';
+import DataSourceList from './pages/dataSources/DataSources';
+import ManageDataSources from './pages/dataSources/ManageDataSources';
+import AlarmList from './pages/alarmList/AlarmList';
+import { AlarmEntry } from './pages/alarmEntry/AlarmEntry';
+import UserList from './pages/user/UserList';
+import User from "./pages/user/User";
 
 setupIonicReact();
 
@@ -41,6 +47,13 @@ const App: React.FC = () => {
             <Route path="/login" component={Login} exact={true} />
             <SecureRoute path="/values"  component={ValueList} exact={true} />
             <SecureRoute path="/values/show/:id"  component={ShowValue} exact={true} />
+            <SecureRoute path="/dataSources"  component={DataSourceList} exact={true} />
+            <SecureRoute path="/dataSource/:source"  component={ManageDataSources("edit")} exact={true} />
+            <SecureRoute path="/alarmList"  component={AlarmList} exact={true} />
+            <SecureRoute path="/alarmEntry/:id"  component={AlarmEntry} exact={true} />
+            <SecureRoute path="/users/"  component={UserList} exact={true} />
+            <SecureRoute path="/users/add"  component={User("add")} exact={true} />
+            <SecureRoute path="/users/edit/:id"  component={User("edit")} exact={true} />
             <Route path="/" exact={true}>
               <Redirect to="/home" />
             </Route>

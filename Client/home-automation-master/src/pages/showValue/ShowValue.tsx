@@ -37,11 +37,7 @@ export const ShowValue: FunctionComponent<RouteComponentProps<{ id: string }>> =
     let gaugeArc = [];
     useEffect(() => {
             thunkDispatch(fetchValueAction(match.params.id)).finally(() => updateVisuals(value));
-    }, []);
-
-
-
-    //setInterval(() => {updateVisuals(value);},1000);
+    }, [match.params.id]);
 
     const doRefresh = (event: CustomEvent<RefresherEventDetail>) => {
         console.log('Begin async operation on Value');
@@ -57,7 +53,7 @@ export const ShowValue: FunctionComponent<RouteComponentProps<{ id: string }>> =
     const updateVisuals = (gaugeval : Value | null) => {
         console.log("gauge " , gaugeval)
         if(gaugeval && gaugeval.visuals) {
-            if(gaugeval.dataPoint.dataType == "1") {
+            if(gaugeval.dataPoint.dataType == "Float") {
                 const minval = gaugeval.visuals!.minValue;
                 const maxval = gaugeval.visuals!.maxValue;
                 const va = parseFloat(gaugeval.sample.value);
@@ -65,7 +61,6 @@ export const ShowValue: FunctionComponent<RouteComponentProps<{ id: string }>> =
                 const valutext = va + " " + gaugeval.visuals!.unit;
 
                 const perc = (100 / (Math.abs(minval!) + maxval!) * va) / 100;
-                // console.log("Min: " + minval + " Max: " + maxval + " Value: " + va + " Perc: " + perc);
                 setGauge((gauge) => (gauge = perc));
                 setGaugeText((gaugeText) => (gaugeText = valutext))
             }
@@ -85,12 +80,9 @@ export const ShowValue: FunctionComponent<RouteComponentProps<{ id: string }>> =
             <IonLabel > {text} </IonLabel>
         </IonItem>) : (<></>);
 
-    //updateVisuals(value);
 
     const DataVisualization = () => {
         if(!isLoading) {
-
-           // updateVisuals(value);
             let arr  : number[] = [];
             let colors : string[] = [];
             if(value.visuals != null) {
@@ -139,7 +131,6 @@ export const ShowValue: FunctionComponent<RouteComponentProps<{ id: string }>> =
                         arr.push(alarmperc);
                         arr.push(warningperc);
                         arr.push(sum);
-                        //["#5BE12C", "#F5CD19", "#EA4228"]
                         colors.push("#5BE12C")
                         colors.push("#F5CD19")
                         colors.push("#EA4228")

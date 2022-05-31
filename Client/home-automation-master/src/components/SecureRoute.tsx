@@ -1,6 +1,6 @@
 import React, { Component, FunctionComponent } from "react";
 import { Route, Redirect, RouteProps } from "react-router";
-import { isNotExpired } from "../services/security";
+import { isNotExpired } from "../services/rest/security";
 import { ConnectedComponent, useSelector } from "react-redux";
 import { RootState } from "../services/reducers";
 import { authentication } from "../types/types";

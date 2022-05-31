@@ -3,7 +3,7 @@ import axios, {AxiosResponse} from 'axios';
 import config from '../server-config'
 import { Value, ValueList } from '../../types/types';
 import serverConfig from '../server-config';
-import { createAuthenticationHeader } from '../security';
+import { createAuthenticationHeader } from './security';
 
 
 interface ErrorMessage {
