@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prassl-backend
+spec:
+  selector:
+    matchLabels:
+      app: prassl-backend
+  template:
+    metadata:
+      labels:
+        app: prassl-backend
+    spec:
+      containers:
+      - name: prassl-backend
+        image: image-registry.openshift-image-registry.svc:5000/prassl/prassl-backend
+        env: 
+        - name: ASPNETCORE_URLS
+          value: "http://+:8080"

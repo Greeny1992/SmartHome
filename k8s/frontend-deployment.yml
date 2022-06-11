@@ -1,0 +1,20 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: prassl-frontend
+spec:
+  selector:
+    matchLabels:
+      app: prassl-frontend
+  template:
+    metadata:
+      labels:
+        app: prassl-frontend
+    spec:
+      containers:
+        - name: prassl-frontend
+          image: image-registry.openshift-image-registry.svc:5000/prassl/prassl-frontend
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+      restartPolicy: Always

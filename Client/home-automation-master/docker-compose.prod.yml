@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: prassl-frontend
+    image: prassl-frontend
+    build:
+      context: .
+      target: production
